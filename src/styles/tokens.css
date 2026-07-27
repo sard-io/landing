@@ -1,0 +1,50 @@
+/* Design tokens extracted from Figma "final" section (26:286).
+   Dark board 14:26 / 25:738, Light board 25:424 / 25:2748. */
+
+:root {
+  /* Brand accent (identical in both themes) */
+  --accent: #61e0b2;
+  --accent-soft: rgba(97, 224, 178, 0.10);
+
+  /* Radii from Figma */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+
+  /* Type scale (Golos Text) */
+  --font-sans: "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Layout */
+  --content-max: 1193px;   /* inner content width on desktop board (1433 − 2*120 gutter) */
+  --board-w: 1433px;
+}
+
+/* ---------- DARK (default) ---------- */
+:root,
+:root[data-theme="dark"] {
+  --bg: #0c0d0d;
+  --surface: #1f2121;
+  --surface-2: #2f3333;
+  --surface-translucent: rgba(31, 33, 33, 0.30);
+  --text: #deecf1;
+  --text-muted: #a6b1b5;
+  --text-invert: #0c0d0d;
+  --btn-bg: #1f2121;
+  --btn-text: #deecf1;
+  --hairline: rgba(222, 236, 241, 0.12);
+}
+
+/* ---------- LIGHT ---------- */
+:root[data-theme="light"] {
+  --bg: #f9faf5;
+  --surface: #fefefe;
+  --surface-2: #eef0ea;
+  --surface-translucent: rgba(46, 47, 42, 0.06);
+  --text: #242424;
+  --text-muted: #90918c;
+  --text-invert: #f9faf5;
+  --btn-bg: #242424;
+  --btn-text: #f9faf5;
+  --hairline: rgba(36, 36, 36, 0.12);
+}

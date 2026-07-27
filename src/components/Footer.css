@@ -1,0 +1,94 @@
+.footer {
+  position: relative;
+  max-width: var(--board-w);
+  margin: 220px auto 0;
+  padding: 0 120px 40px;
+  min-height: 309px;
+  overflow: hidden;
+}
+.footer__watermark {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  width: 1300px;
+  max-width: none;
+  opacity: 0.05;
+  filter: grayscale(1);
+  pointer-events: none;
+  user-select: none;
+}
+.footer__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 91px;
+}
+.footer__socials {
+  display: flex;
+  gap: 40px;
+}
+.footer__social {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--r-lg);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent); /* teal frame so the tile reads on the dark bg */
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+}
+.footer__social:hover {
+  background: rgba(97, 224, 178, 0.2);
+}
+/* Light board uses solid teal social buttons with a dark glyph. */
+:root[data-theme="light"] .footer__social {
+  background: var(--accent);
+  border-color: rgba(12, 13, 13, 0.16); /* teal would be invisible on solid teal — use a subtle dark edge */
+  color: #0c0d0d;
+}
+:root[data-theme="light"] .footer__social:hover {
+  background: #4fd0a2;
+}
+.footer__contacts {
+  margin-top: 90px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  letter-spacing: -1px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 1200px) {
+  .footer {
+    padding: 0 20px 28px;
+    margin-top: 80px;
+    min-height: 0;
+  }
+  .footer__inner {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .footer__watermark {
+    width: 420px;
+    bottom: 60px;
+  }
+  .footer__inner {
+    padding-top: 40px;
+  }
+  .footer__socials {
+    gap: 20px;
+  }
+  .footer__social {
+    width: 56px;
+    height: 56px;
+  }
+  .footer__contacts {
+    margin-top: 44px;
+    font-size: 12px;
+    letter-spacing: -0.6px;
+  }
+}

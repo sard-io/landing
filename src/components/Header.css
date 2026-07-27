@@ -1,0 +1,112 @@
+.header {
+  position: relative;
+  z-index: 10;
+}
+.header__inner {
+  max-width: var(--board-w);
+  margin: 0 auto;
+  height: 128px;
+  padding: 0 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo {
+  height: 43px;
+  width: auto;
+  max-width: 40vw;
+  object-fit: contain;
+  object-position: left;
+}
+.header__controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.header__toggle {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+}
+.header__lang {
+  height: 48px;
+  min-width: 48px;
+  padding: 0 14px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  display: grid;
+  place-items: center;
+}
+.header__cta {
+  height: 48px;
+  min-width: 144px; /* = width of the wider label ("Get in touch"); keeps RU/EN equal so the group doesn't shift */
+  padding: 0 22px;
+  border-radius: var(--r-lg);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.36px;
+}
+.header__cta-short {
+  display: none;
+}
+
+/* Depth for the control buttons: subtle outline in dark, soft drop shadow in light.
+   Transparent 1px border in the base rule keeps box geometry identical across themes. */
+.header__toggle,
+.header__lang,
+.header__cta {
+  border: 1px solid var(--hairline);
+}
+:root[data-theme="light"] .header__toggle,
+:root[data-theme="light"] .header__lang,
+:root[data-theme="light"] .header__cta {
+  border-color: transparent;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 1200px) {
+  .header__inner {
+    height: 72px;
+    padding: 0 20px;
+  }
+  .header__logo {
+    height: 30px;
+  }
+  .header__controls {
+    gap: 12px;
+  }
+  .header__toggle {
+    width: 40px;
+    height: 40px;
+  }
+  .header__lang {
+    height: 40px;
+    min-width: 40px;
+    padding: 0 10px;
+    font-size: 13px;
+  }
+  .header__cta {
+    height: 40px;
+    min-width: 96px; /* reserve width for the longest short label ("Связаться") */
+    padding: 0 18px;
+    font-size: 12px;
+  }
+  .header__cta-full {
+    display: none;
+  }
+  .header__cta-short {
+    display: inline;
+  }
+}
