@@ -10,11 +10,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 .header__logo {
   height: 43px;
   width: auto;
   max-width: 40vw;
+  flex-shrink: 0; /* logo keeps its size; the CTA absorbs any deficit */
   object-fit: contain;
   object-position: left;
 }
@@ -22,10 +24,12 @@
   display: flex;
   align-items: center;
   gap: 24px;
+  min-width: 0; /* allow the row to shrink instead of overflowing the page */
 }
 .header__toggle {
   width: 48px;
   height: 48px;
+  flex-shrink: 0;
   border-radius: var(--r-lg);
   background: var(--surface);
   color: var(--text);
@@ -35,6 +39,7 @@
 .header__lang {
   height: 48px;
   min-width: 48px;
+  flex-shrink: 0;
   padding: 0 14px;
   border-radius: var(--r-lg);
   background: var(--surface);
@@ -47,7 +52,13 @@
 }
 .header__cta {
   height: 48px;
-  min-width: 144px; /* = width of the wider label ("Get in touch"); keeps RU/EN equal so the group doesn't shift */
+  /* stable 144px (width of the wider label) in normal conditions, but allowed to
+     shrink when space runs out (narrow screens, OS font scaling) — the label then
+     ellipsizes instead of pushing the page wider than the viewport */
+  flex: 0 1 auto;
+  width: 144px;
+  min-width: 0;
+  overflow: hidden;
   padding: 0 22px;
   border-radius: var(--r-lg);
   background: var(--btn-bg);
@@ -55,6 +66,15 @@
   font-size: 18px;
   font-weight: 500;
   letter-spacing: -0.36px;
+}
+.header__cta-full,
+.header__cta-short {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.header__cta-full {
+  display: block;
 }
 .header__cta-short {
   display: none;
@@ -99,7 +119,7 @@
   }
   .header__cta {
     height: 40px;
-    min-width: 96px; /* reserve width for the longest short label ("Связаться") */
+    width: 96px; /* stable width for the longest short label ("Связаться"), still shrinkable */
     padding: 0 18px;
     font-size: 12px;
   }
@@ -107,7 +127,7 @@
     display: none;
   }
   .header__cta-short {
-    display: inline;
+    display: block;
   }
 }
 
@@ -135,7 +155,7 @@
   }
   .header__cta {
     height: 36px;
-    min-width: 0;
+    width: auto; /* size to content, shrink if needed */
     padding: 0 12px;
   }
 }
