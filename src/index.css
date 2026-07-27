@@ -19,6 +19,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  overflow-x: hidden; /* keep any stray overflow from widening the document on phones */
 }
 
 body {

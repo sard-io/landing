@@ -110,3 +110,32 @@
     display: inline;
   }
 }
+
+/* Very narrow screens (iPhone SE 320, Galaxy Fold cover, display zoom):
+   compact everything so the header always fits without horizontal overflow. */
+@media (max-width: 380px) {
+  .header__inner {
+    padding: 0 14px;
+  }
+  .header__logo {
+    height: 26px;
+    max-width: 30vw;
+  }
+  .header__controls {
+    gap: 8px;
+  }
+  .header__toggle {
+    width: 36px;
+    height: 36px;
+  }
+  .header__lang {
+    height: 36px;
+    min-width: 36px;
+    padding: 0 8px;
+  }
+  .header__cta {
+    height: 36px;
+    min-width: 0;
+    padding: 0 12px;
+  }
+}
