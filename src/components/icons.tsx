@@ -38,12 +38,6 @@ export const Chevron = ({ open, variant = "card" }: { open?: boolean; variant?: 
   );
 };
 
-export const YouTubeIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z" />
-  </svg>
-);
-
 export const TelegramIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
     <path d="M21.9 4.3l-3.3 15.6c-.24 1.1-.9 1.36-1.82.85l-5-3.7-2.42 2.33c-.27.27-.5.5-1 .5l.36-5.08L18 5.4c.4-.36-.08-.56-.62-.2L6.9 12.1l-4.94-1.54c-1.07-.34-1.1-1.07.22-1.58L20.5 2.76c.9-.33 1.68.2 1.4 1.54z" />

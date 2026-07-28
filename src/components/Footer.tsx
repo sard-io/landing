@@ -1,5 +1,5 @@
 import ThemedImg from "./ThemedImg";
-import { YouTubeIcon, TelegramIcon, InstagramIcon } from "./icons";
+import { TelegramIcon, InstagramIcon } from "./icons";
 import { contactEmail, contactHandle } from "../data";
 import "./Footer.css";
 
@@ -9,7 +9,6 @@ export default function Footer() {
       <ThemedImg name="sard" alt="" className="footer__watermark" />
       <div className="footer__inner">
         <div className="footer__socials">
-          <a className="footer__social" href="#" aria-label="YouTube"><YouTubeIcon /></a>
           <a className="footer__social" href="#" aria-label="Telegram"><TelegramIcon /></a>
           <a className="footer__social" href="#" aria-label="Instagram"><InstagramIcon /></a>
         </div>
