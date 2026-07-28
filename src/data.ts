@@ -205,7 +205,7 @@ export const content: Record<Lang, Content> = {
       },
     ],
     ui: {
-      contact: "Get in touch",
+      contact: "Contact",
       contactShort: "Contact",
       toggleTheme: "Switch theme",
       toggleLang: "Переключить на русский",

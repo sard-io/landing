@@ -56,7 +56,7 @@
      shrink when space runs out (narrow screens, OS font scaling) — the label then
      ellipsizes instead of pushing the page wider than the viewport */
   flex: 0 1 auto;
-  width: 148px; /* widest label (144) + 1px border each side + slack, so no ellipsis */
+  width: 140px; /* widest label ("Связаться", 133) + border + slack, so no ellipsis */
   min-width: 0;
   overflow: hidden;
   padding: 0 22px;
