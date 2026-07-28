@@ -13,16 +13,36 @@ const urls = import.meta.glob("../assets/img/partners/**/*.svg", {
 const logo = (name: string, theme: string) =>
   urls[`../assets/img/partners/${theme === "dark" ? "dark/" : ""}${name}.svg`] ?? "";
 
-const ROW1 = ["abcex", "mostbet", "xbet", "mexc", "win"];
-// Row 2 has only 3 partners; repeat the set inside the group for marquee density.
-const ROW2 = ["fastpay", "moneyhub", "payplay", "fastpay", "moneyhub", "payplay"];
+interface Partner {
+  file: string;
+  name: string; // display name (sard.io titles)
+}
 
-function Row({ names, theme, reverse }: { names: string[]; theme: string; reverse?: boolean }) {
+const ROW1: Partner[] = [
+  { file: "abcex", name: "AbcEx" },
+  { file: "mostbet", name: "MostBet" },
+  { file: "xbet", name: "1xBet" },
+  { file: "mexc", name: "MExc" },
+  { file: "win", name: "1Win" },
+];
+// Row 2 has only 3 partners; repeat the set inside the group for marquee density.
+const ROW2: Partner[] = [
+  { file: "fastpay", name: "FastPay" },
+  { file: "moneyhub", name: "MoneyHub" },
+  { file: "payplay", name: "Pay2Play" },
+  { file: "fastpay", name: "FastPay" },
+  { file: "moneyhub", name: "MoneyHub" },
+  { file: "payplay", name: "Pay2Play" },
+];
+
+function Row({ partners, theme, reverse }: { partners: Partner[]; theme: string; reverse?: boolean }) {
   // Two identical groups back-to-back: translateX(-50%) loops seamlessly.
   const group = (
     <>
-      {names.map((name, i) => (
-        <img key={i} src={logo(name, theme)} alt="" aria-hidden className="marquee__logo" loading="lazy" decoding="async" />
+      {partners.map((p, i) => (
+        <span key={i} className="marquee__item" data-name={p.name} title={p.name}>
+          <img src={logo(p.file, theme)} alt={p.name} className="marquee__logo" loading="lazy" decoding="async" />
+        </span>
       ))}
     </>
   );
@@ -52,8 +72,8 @@ export default function Partners() {
 
   return (
     <section ref={ref} className={`partners${visible ? " is-visible" : ""}`}>
-      <Row names={ROW1} theme={theme} />
-      <Row names={ROW2} theme={theme} reverse />
+      <Row partners={ROW1} theme={theme} />
+      <Row partners={ROW2} theme={theme} reverse />
     </section>
   );
 }
