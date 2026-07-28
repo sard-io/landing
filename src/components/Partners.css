@@ -29,11 +29,21 @@
     animation: none;
   }
 }
-.marquee__img {
+.marquee__group {
+  display: flex;
+  align-items: center;
+  gap: 90px;
+  padding-right: 90px; /* seam gap between the looped copies = inter-logo gap */
+}
+.marquee__logo {
   height: 40px;
   width: auto;
   display: block;
-  padding-right: 90px; /* spacing between the looped copies */
+}
+/* SVG logos are grey-on-light (sard.io originals); invert for the dark board —
+   greys map to light greys, two-tone contrast preserved. */
+:root[data-theme="dark"] .marquee__logo {
+  filter: invert(1);
 }
 @keyframes marquee {
   to {
@@ -46,8 +56,11 @@
     margin-top: 80px;
     gap: 26px;
   }
-  .marquee__img {
-    height: 28px;
+  .marquee__group {
+    gap: 40px;
     padding-right: 40px;
+  }
+  .marquee__logo {
+    height: 28px;
   }
 }

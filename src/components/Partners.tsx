@@ -1,21 +1,39 @@
 import { useEffect, useRef, useState } from "react";
-import { useTheme } from "../theme";
-import { asset } from "../assets";
 import "./Partners.css";
+import abcex from "../assets/img/partners/abcex.svg";
+import mostbet from "../assets/img/partners/mostbet.svg";
+import xbet from "../assets/img/partners/xbet.svg";
+import mexc from "../assets/img/partners/mexc.svg";
+import win from "../assets/img/partners/win.svg";
+import fastpay from "../assets/img/partners/fastpay.svg";
+import moneyhub from "../assets/img/partners/moneyhub.svg";
+import payplay from "../assets/img/partners/payplay.svg";
 
-function Row({ src, reverse }: { src: string; reverse?: boolean }) {
+// Individual partner logos (original sard.io SVGs) — whole logos, no strip seams.
+const ROW1 = [abcex, mostbet, xbet, mexc, win];
+// Row 2 has only 3 partners; repeat the set inside the group for marquee density.
+const ROW2 = [fastpay, moneyhub, payplay, fastpay, moneyhub, payplay];
+
+function Row({ logos, reverse }: { logos: string[]; reverse?: boolean }) {
+  // Two identical groups back-to-back: translateX(-50%) loops seamlessly.
+  const group = (
+    <>
+      {logos.map((src, i) => (
+        <img key={i} src={src} alt="" aria-hidden className="marquee__logo" loading="lazy" decoding="async" />
+      ))}
+    </>
+  );
   return (
     <div className={`marquee${reverse ? " marquee--reverse" : ""}`}>
       <div className="marquee__track">
-        <img src={src} alt="" aria-hidden className="marquee__img" loading="lazy" decoding="async" />
-        <img src={src} alt="" aria-hidden className="marquee__img" loading="lazy" decoding="async" />
+        <div className="marquee__group">{group}</div>
+        <div className="marquee__group">{group}</div>
       </div>
     </div>
   );
 }
 
 export default function Partners() {
-  const { theme } = useTheme();
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -30,8 +48,8 @@ export default function Partners() {
 
   return (
     <section ref={ref} className={`partners${visible ? " is-visible" : ""}`}>
-      <Row src={asset(`partners-row1-${theme}`)} />
-      <Row src={asset(`partners-row2-${theme}`)} reverse />
+      <Row logos={ROW1} />
+      <Row logos={ROW2} reverse />
     </section>
   );
 }
