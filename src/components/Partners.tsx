@@ -1,25 +1,28 @@
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "../theme";
 import "./Partners.css";
-import abcex from "../assets/img/partners/abcex.svg";
-import mostbet from "../assets/img/partners/mostbet.svg";
-import xbet from "../assets/img/partners/xbet.svg";
-import mexc from "../assets/img/partners/mexc.svg";
-import win from "../assets/img/partners/win.svg";
-import fastpay from "../assets/img/partners/fastpay.svg";
-import moneyhub from "../assets/img/partners/moneyhub.svg";
-import payplay from "../assets/img/partners/payplay.svg";
 
 // Individual partner logos (original sard.io SVGs) — whole logos, no strip seams.
-const ROW1 = [abcex, mostbet, xbet, mexc, win];
-// Row 2 has only 3 partners; repeat the set inside the group for marquee density.
-const ROW2 = [fastpay, moneyhub, payplay, fastpay, moneyhub, payplay];
+// Light theme uses the originals; dark theme uses palette-normalized variants
+// (partners/dark/*.svg, greys remapped to the site's light text tones).
+const urls = import.meta.glob("../assets/img/partners/**/*.svg", {
+  eager: true,
+  query: "?url",
+  import: "default",
+}) as Record<string, string>;
+const logo = (name: string, theme: string) =>
+  urls[`../assets/img/partners/${theme === "dark" ? "dark/" : ""}${name}.svg`] ?? "";
 
-function Row({ logos, reverse }: { logos: string[]; reverse?: boolean }) {
+const ROW1 = ["abcex", "mostbet", "xbet", "mexc", "win"];
+// Row 2 has only 3 partners; repeat the set inside the group for marquee density.
+const ROW2 = ["fastpay", "moneyhub", "payplay", "fastpay", "moneyhub", "payplay"];
+
+function Row({ names, theme, reverse }: { names: string[]; theme: string; reverse?: boolean }) {
   // Two identical groups back-to-back: translateX(-50%) loops seamlessly.
   const group = (
     <>
-      {logos.map((src, i) => (
-        <img key={i} src={src} alt="" aria-hidden className="marquee__logo" loading="lazy" decoding="async" />
+      {names.map((name, i) => (
+        <img key={i} src={logo(name, theme)} alt="" aria-hidden className="marquee__logo" loading="lazy" decoding="async" />
       ))}
     </>
   );
@@ -34,6 +37,7 @@ function Row({ logos, reverse }: { logos: string[]; reverse?: boolean }) {
 }
 
 export default function Partners() {
+  const { theme } = useTheme();
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -48,8 +52,8 @@ export default function Partners() {
 
   return (
     <section ref={ref} className={`partners${visible ? " is-visible" : ""}`}>
-      <Row logos={ROW1} />
-      <Row logos={ROW2} reverse />
+      <Row names={ROW1} theme={theme} />
+      <Row names={ROW2} theme={theme} reverse />
     </section>
   );
 }

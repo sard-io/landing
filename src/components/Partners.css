@@ -40,11 +40,6 @@
   width: auto;
   display: block;
 }
-/* SVG logos are grey-on-light (sard.io originals); invert for the dark board —
-   greys map to light greys, two-tone contrast preserved. */
-:root[data-theme="dark"] .marquee__logo {
-  filter: invert(1);
-}
 @keyframes marquee {
   to {
     transform: translateX(-50%);
