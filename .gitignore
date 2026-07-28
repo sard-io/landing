@@ -28,3 +28,7 @@ dist-ssr
 
 # container-provided symlink (points outside the repo)
 scripts
+
+# vercel CLI local metadata
+.vercel
+.env*
