@@ -1,6 +1,6 @@
 import { content } from "../data";
 import { useLang } from "../i18n";
-import { asset } from "../assets";
+import { WebIcon } from "./icons";
 import "./Hero.css";
 
 export default function Hero() {
@@ -12,7 +12,7 @@ export default function Hero() {
         {hero.line1}
         <br />
         {hero.line2a}
-        <img className="hero__icon" src={asset("hero-icon")} alt="" aria-hidden />
+        <WebIcon className="hero__icon" />
         {hero.line2b}
       </h1>
       <p className="hero__subtitle">{hero.subtitle}</p>
