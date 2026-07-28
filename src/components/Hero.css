@@ -17,6 +17,7 @@
   display: inline-block;
   height: 0.86em;
   width: auto;
+  aspect-ratio: 45 / 43; /* keep the SVG's intrinsic proportions with auto width */
   vertical-align: -0.14em;
   margin: 0 0.12em;
 }
