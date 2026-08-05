@@ -216,5 +216,5 @@ export const content: Record<Lang, Content> = {
 };
 
 // Not translated.
-export const contactEmail = "sard@gmail.com";
+export const contactEmail = "ceo@sard.io";
 export const contactHandle = "@sard";
