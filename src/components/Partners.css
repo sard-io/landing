@@ -24,18 +24,20 @@
 .partners.is-visible .marquee__track {
   animation-play-state: running;
 }
-/* hovering a row pauses it (like sard.io) so the tooltip can be read */
-.partners.is-visible .marquee:hover .marquee__track {
-  animation-play-state: paused;
+/* hovering a row pauses it (like sard.io) so the tooltip can be read.
+   Guarded to fine-pointer devices — on touch screens a tap can latch :hover
+   and freeze the strip, so mobile never pauses on touch. */
+@media (hover: hover) and (pointer: fine) {
+  .partners.is-visible .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
 }
 .marquee--reverse .marquee__track {
   animation-direction: reverse;
 }
-@media (prefers-reduced-motion: reduce) {
-  .marquee__track {
-    animation: none;
-  }
-}
+/* Note: intentionally NOT disabling the marquee under prefers-reduced-motion —
+   the slow continuous partner scroll is core to the design and requested to run
+   on every device (incl. phones with Reduce Motion enabled). */
 .marquee__group {
   display: flex;
   align-items: center;
