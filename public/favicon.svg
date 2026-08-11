@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <rect x="24" y="24" width="464" height="464" rx="116" fill="#a5371a"/>
-  <g transform="translate(28,0) skewX(-9)">
-    <path d="M352 190 C352 146 298 130 250 130 C190 130 156 160 156 210 C156 258 206 272 258 278 C310 284 356 296 356 338 C356 388 298 400 250 400 C198 400 156 382 156 338"
-          fill="none" stroke="#dcdcdc" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"/>
-  </g>
-</svg>

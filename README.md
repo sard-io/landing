@@ -1,36 +1,20 @@
-# SARD — landing
+# SARD — landing (sard.io)
 
-Pixel-perfect landing for **SARD** (iGaming ecosystem), rebuilt 1-to-1 from the Figma
-"final" boards. Responsive (desktop + mobile) with a light/dark theme toggle (dark default).
+Static single-page landing for **SARD**, deployed to sard.io via Vercel.
 
-## Stack
+`index.html` is fully self-contained — fonts and logos are inlined as data-URIs, so there are
+**no external requests** and **no build step**. Vercel serves it as static (`vercel.json` disables
+the build and serves the repo root).
 
-- **Vite + React + TypeScript**
-- Plain CSS with design tokens (`src/styles/tokens.css`), CSS custom properties per theme
-- **Golos Text** (self-hosted via `@fontsource`, Cyrillic subset) — matches the Figma type
-- Bun for install/dev/build
+## Source
 
-## Scripts
+This is the built output of the redesign. The editable source (`page.html` + `build.ps1`) lives in
+**`sard-io/landing-redesign`** — make design changes there and copy the rebuilt `index.html` here.
 
-```bash
-bun install
-bun run dev      # http://localhost:5173
-bun run build    # -> dist/
-bun run preview
-```
+## Assets
 
-## Structure
+`assets/` holds the partner logos and font subsets used by the source build; `index.html` already
+inlines everything it needs at runtime.
 
-- `src/App.tsx` — page composition (Header → Hero → Projects → Partners → WhoWeAre → Footer)
-- `src/theme.tsx` — theme provider/toggle (persists to localStorage, sets `data-theme` on `<html>`)
-- `src/components/*` — one component + co-located CSS per section
-- `src/data.ts` — all copy extracted verbatim from the Figma boards
-- `public/assets/*` — logos / graphics; theme-paired as `<name>-dark.png` / `<name>-light.png`
-
-## Design source
-
-The design lives in the Figma "Sard" file, section `26:286`, four boards:
-desktop-dark `14:26`, desktop-light `25:424`, mobile-dark `25:738`, mobile-light `25:2748`.
-Reference PNGs, JSON, and cropped assets are under `.figma-ref/` (git-ignored), captured via
-the `skulidropek/figma-tunnel-mcp` bridge. Rendered screenshots were diffed side-by-side
-against the board exports to tune the layout to 1-to-1.
+---
+The previous React/Vite landing is preserved at **`sard-io/landing-legacy`**.
