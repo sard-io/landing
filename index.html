@@ -915,38 +915,17 @@ ul{ margin:0; padding:0; list-style:none; }
     nodeSize: 6, nodes: [[0, 6], [8, 6], [4, 7]]
   });
 
-  /* Направления: открыт всегда один столбик, текст разворачивается под сеткой */
+  /* Направления: каждая карточка разворачивается независимо. Открытие/закрытие
+     меняет только текст под самой карточкой и не трогает соседние — поэтому клик
+     никогда не сдвигает кликнутую карточку и не «уводит» фокус (ни вверх, ни вниз). */
   document.querySelectorAll('.dcard__btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var card = btn.closest('.dcard');
       var body = document.getElementById(btn.getAttribute('aria-controls'));
-      var wasOpen = card.getAttribute('data-open') === '1';
-      document.querySelectorAll('.dcard').forEach(function (c) {
-        c.setAttribute('data-open', '0');
-        c.querySelector('.dcard__btn').setAttribute('aria-expanded', 'false');
-      });
-      document.querySelectorAll('.dbody').forEach(function (b) { b.setAttribute('data-open', '0'); });
-      if (!wasOpen) {
-        card.setAttribute('data-open', '1');
-        btn.setAttribute('aria-expanded', 'true');
-        body.setAttribute('data-open', '1');
-        /* Keep the clicked card visually anchored while the single-open
-           accordion reflows the grid — so it neither jumps up (previous card
-           closing above) nor gets yanked down. Pin its on-screen position for
-           the duration of the expand/collapse animation, without any scroll. */
-        var anchorTop = card.getBoundingClientRect().top;
-        var root = document.documentElement;
-        var prevBehavior = root.style.scrollBehavior;
-        root.style.scrollBehavior = 'auto';
-        var t0 = (window.performance && performance.now) ? performance.now() : Date.now();
-        (function pin() {
-          var delta = card.getBoundingClientRect().top - anchorTop;
-          if (delta) window.scrollBy(0, delta);
-          var now = (window.performance && performance.now) ? performance.now() : Date.now();
-          if (now - t0 < 560) requestAnimationFrame(pin);
-          else root.style.scrollBehavior = prevBehavior;
-        })();
-      }
+      var open = card.getAttribute('data-open') === '1';
+      card.setAttribute('data-open', open ? '0' : '1');
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      body.setAttribute('data-open', open ? '0' : '1');
     });
   });
 
