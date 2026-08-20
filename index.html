@@ -930,17 +930,22 @@ ul{ margin:0; padding:0; list-style:none; }
         card.setAttribute('data-open', '1');
         btn.setAttribute('aria-expanded', 'true');
         body.setAttribute('data-open', '1');
-        /* Keep the opened card in view: the single-open accordion reflows the
-           grid, which otherwise scrolls the clicked card off the top. Reveal
-           now (responsive) and again once the expand animation settles. */
-        var reveal = function () { card.scrollIntoView({ block: 'start' }); };
-        requestAnimationFrame(reveal);
-        body.addEventListener('transitionend', function te(e) {
-          if (e.propertyName === 'grid-template-rows') {
-            body.removeEventListener('transitionend', te);
-            reveal();
-          }
-        });
+        /* Keep the clicked card visually anchored while the single-open
+           accordion reflows the grid — so it neither jumps up (previous card
+           closing above) nor gets yanked down. Pin its on-screen position for
+           the duration of the expand/collapse animation, without any scroll. */
+        var anchorTop = card.getBoundingClientRect().top;
+        var root = document.documentElement;
+        var prevBehavior = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        var t0 = (window.performance && performance.now) ? performance.now() : Date.now();
+        (function pin() {
+          var delta = card.getBoundingClientRect().top - anchorTop;
+          if (delta) window.scrollBy(0, delta);
+          var now = (window.performance && performance.now) ? performance.now() : Date.now();
+          if (now - t0 < 560) requestAnimationFrame(pin);
+          else root.style.scrollBehavior = prevBehavior;
+        })();
       }
     });
   });
