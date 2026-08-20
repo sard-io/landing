@@ -925,6 +925,32 @@ ul{ margin:0; padding:0; list-style:none; }
       card.setAttribute('data-open', open ? '0' : '1');
       btn.setAttribute('aria-expanded', open ? 'false' : 'true');
       body.setAttribute('data-open', open ? '0' : '1');
+
+      /* Anchor the toggled card to its on-screen position while the grid
+         reflows, so it never jumps (e.g. collapsing a card whose body sits
+         above the viewport). Yield immediately if the user scrolls. */
+      var anchorTop = card.getBoundingClientRect().top;
+      var cancelled = false;
+      var yield_ = function () { cancelled = true; };
+      window.addEventListener('wheel', yield_, { passive: true });
+      window.addEventListener('touchmove', yield_, { passive: true });
+      var root = document.documentElement;
+      var prevBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      var t0 = (window.performance && performance.now) ? performance.now() : Date.now();
+      function cleanup() {
+        root.style.scrollBehavior = prevBehavior;
+        window.removeEventListener('wheel', yield_);
+        window.removeEventListener('touchmove', yield_);
+      }
+      (function pin() {
+        if (cancelled) { cleanup(); return; }
+        var delta = card.getBoundingClientRect().top - anchorTop;
+        if (delta) window.scrollBy(0, delta);
+        var now = (window.performance && performance.now) ? performance.now() : Date.now();
+        if (now - t0 < 520) requestAnimationFrame(pin);
+        else cleanup();
+      })();
     });
   });
 
