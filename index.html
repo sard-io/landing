@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="SARD">
 <meta property="og:title" content="SARD — группа компаний">
-<meta property="og:description" content="Медиа и ивенты, закрытая P2P-платформа, PSP и affiliate-маркетинг — четыре направления одной группы компаний.">
+<meta property="og:description" content="Медиа и ивенты, закрытая P2P-платформа, PSP и affiliate-маркетинг — шесть направлений одной группы компаний.">
 <meta property="og:url" content="https://sard.io/">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://sard.io/">
@@ -313,6 +313,12 @@ ul{ margin:0; padding:0; list-style:none; }
 .dbody__text p{ margin:0 0 16px; }
 .dbody__text p:last-child{ margin-bottom:0; }
 .dbody__text strong{ color:var(--ink); font-weight:500; }
+.dbody__text ul{ margin:0 0 16px; padding:0; list-style:none; }
+.dbody__text li{ position:relative; padding-left:18px; margin:0 0 8px; }
+.dbody__text li:last-child{ margin-bottom:0; }
+.dbody__text li::before{ content:""; position:absolute; left:2px; top:.55em; width:5px; height:5px; border-radius:50%; background:var(--accent); }
+.dbody__text a{ color:var(--accent-ink); text-decoration:none; border-bottom:1px solid rgba(97,224,178,.45); transition:border-color .2s; }
+.dbody__text a:hover{ border-bottom-color:var(--accent-ink); }
 
 /* один столбик — текст встаёт сразу под своей карточкой */
 @media (max-width: 639.98px){
@@ -321,6 +327,8 @@ ul{ margin:0; padding:0; list-style:none; }
   .dcard:nth-of-type(2){ order:3; } .dbody:nth-of-type(2){ order:4; }
   .dcard:nth-of-type(3){ order:5; } .dbody:nth-of-type(3){ order:6; }
   .dcard:nth-of-type(4){ order:7; } .dbody:nth-of-type(4){ order:8; }
+  .dcard:nth-of-type(5){ order:9; } .dbody:nth-of-type(5){ order:10; }
+  .dcard:nth-of-type(6){ order:11; } .dbody:nth-of-type(6){ order:12; }
 }
 /* два столбика */
 @media (min-width: 640px) and (max-width: 1079.98px){
@@ -332,17 +340,25 @@ ul{ margin:0; padding:0; list-style:none; }
   .dbody:nth-of-type(1){ grid-area:2/1/auto/-1; } .dbody:nth-of-type(2){ grid-area:3/1/auto/-1; }
   .dcard:nth-of-type(3){ grid-area:4/1; } .dcard:nth-of-type(4){ grid-area:4/2; }
   .dbody:nth-of-type(3){ grid-area:5/1/auto/-1; } .dbody:nth-of-type(4){ grid-area:6/1/auto/-1; }
-  .dcard:nth-of-type(1),.dcard:nth-of-type(2){ margin-bottom:clamp(16px,1.8vw,26px); }
+  .dcard:nth-of-type(5){ grid-area:7/1; } .dcard:nth-of-type(6){ grid-area:7/2; }
+  .dbody:nth-of-type(5){ grid-area:8/1/auto/-1; } .dbody:nth-of-type(6){ grid-area:9/1/auto/-1; }
+  .dbody:nth-of-type(6) .dbody__text{ margin-left:auto; }
+  .dcard:nth-of-type(1),.dcard:nth-of-type(2),.dcard:nth-of-type(3),.dcard:nth-of-type(4){ margin-bottom:clamp(16px,1.8vw,26px); }
 }
-/* четыре столбика */
+/* шесть столбиков — два ряда по три */
 @media (min-width: 1080px){
-  .dgrid{ grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .dgrid{ grid-template-columns:repeat(3,minmax(0,1fr)); }
   .dbody:nth-of-type(3) .dbody__text,
-  .dbody:nth-of-type(4) .dbody__text{ margin-left:auto; }
+  .dbody:nth-of-type(6) .dbody__text{ margin-left:auto; }
   .dcard:nth-of-type(1){ grid-area:1/1; } .dcard:nth-of-type(2){ grid-area:1/2; }
-  .dcard:nth-of-type(3){ grid-area:1/3; } .dcard:nth-of-type(4){ grid-area:1/4; }
+  .dcard:nth-of-type(3){ grid-area:1/3; }
   .dbody:nth-of-type(1){ grid-area:2/1/auto/-1; } .dbody:nth-of-type(2){ grid-area:3/1/auto/-1; }
-  .dbody:nth-of-type(3){ grid-area:4/1/auto/-1; } .dbody:nth-of-type(4){ grid-area:5/1/auto/-1; }
+  .dbody:nth-of-type(3){ grid-area:4/1/auto/-1; }
+  .dcard:nth-of-type(4){ grid-area:5/1; } .dcard:nth-of-type(5){ grid-area:5/2; }
+  .dcard:nth-of-type(6){ grid-area:5/3; }
+  .dbody:nth-of-type(4){ grid-area:6/1/auto/-1; } .dbody:nth-of-type(5){ grid-area:7/1/auto/-1; }
+  .dbody:nth-of-type(6){ grid-area:8/1/auto/-1; }
+  .dcard:nth-of-type(1),.dcard:nth-of-type(2),.dcard:nth-of-type(3){ margin-bottom:clamp(16px,1.8vw,26px); }
 }
 
 /* ── Партнёры ─────────────────────────────────────────────────────────── */
@@ -545,7 +561,7 @@ ul{ margin:0; padding:0; list-style:none; }
     <div class="wrap">
       <div class="sechead rv" style="margin-bottom:clamp(60px,7vw,108px)">
         <span class="eyebrow">Направления</span>
-        <h2 class="h2">Четыре нити одной сети</h2>
+        <h2 class="h2">Шесть нитей одной сети</h2>
         <p class="lead">Каждое направление работает самостоятельно&nbsp;— и усиливает остальные.</p>
       </div>
 
@@ -589,6 +605,24 @@ ul{ margin:0; padding:0; list-style:none; }
             </button>
           </article>
 
+          <article class="dcard" data-open="0">
+            <button class="dcard__btn" type="button" id="dt5" aria-expanded="false" aria-controls="db5">
+              <span class="dcard__tag">Matcher</span>
+              <span class="dcard__title">LoadRunner Matcher</span>
+              <span class="dcard__lead">Подбирает оптимальный источник для обработки трафика по лимитам, ставкам, SLA и доступности.</span>
+              <span class="dcard__foot"><span class="dcard__plus" aria-hidden="true"></span></span>
+            </button>
+          </article>
+
+          <article class="dcard" data-open="0">
+            <button class="dcard__btn" type="button" id="dt6" aria-expanded="false" aria-controls="db6">
+              <span class="dcard__tag">Anti-fraud</span>
+              <span class="dcard__title">Private Detect Checker</span>
+              <span class="dcard__lead">Проверяет банковские PDF-чеки и платёжные подтверждения — verdict original / fake / unknown.</span>
+              <span class="dcard__foot"><span class="dcard__plus" aria-hidden="true"></span></span>
+            </button>
+          </article>
+
           <div class="dbody" id="db1" data-open="0" role="region" aria-labelledby="dt1">
             <div class="dbody__in"><div class="dbody__text">
               <p>Мы объединяем актуальные новости рынка, рабочие мануалы, прямые эфиры, подкасты с лидерами индустрии и сильными участниками рынка, а также комьюнити активных команд, которые формируют индустрию.</p>
@@ -618,6 +652,36 @@ ul{ margin:0; padding:0; list-style:none; }
             <div class="dbody__in"><div class="dbody__text">
               <p>Сильная байинговая команда, поставляющая на рынок самые горячие лиды в iGaming. Работаем так, чтобы каждый партнёр был доволен.</p>
               <p>В будущем планируем запуск собственной партнёрской структуры.</p>
+            </div></div>
+          </div>
+
+          <div class="dbody" id="db5" data-open="0" role="region" aria-labelledby="dt5">
+            <div class="dbody__in"><div class="dbody__text">
+              <p><strong>LoadRunner Matcher</strong>&nbsp;— модуль для автоматического подбора подходящего источника или партнёра под конкретный трафик или заявку.</p>
+              <p>Он помогает команде не выбирать источник вручную, а быстро понимать, куда лучше направить объём с учётом условий, лимитов, ставок, SLA, доступности и текущего статуса партнёров. Matcher нужен, чтобы трафик не зависел от одного источника и мог распределяться через каскад.</p>
+              <ul>
+                <li>подбирает подходящий источник под заявку или трафик;</li>
+                <li>учитывает лимиты, ставки, SLA и доступность;</li>
+                <li>помогает распределять объём между несколькими партнёрами;</li>
+                <li>снижает зависимость от одного источника;</li>
+                <li>ускоряет обработку заявок;</li>
+                <li>показывает, где сейчас выгоднее и безопаснее работать.</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="dbody" id="db6" data-open="0" role="region" aria-labelledby="dt6">
+            <div class="dbody__in"><div class="dbody__text">
+              <p><strong>Private Detect Checker</strong>&nbsp;— сервис для проверки банковских PDF-чеков и платёжных подтверждений.</p>
+              <p>Он помогает процессингам, P2P-командам и платёжным площадкам быстро понимать, является чек оригинальным, фейковым или требует дополнительной проверки. На вход можно передать PDF-чек или ссылку, а на выходе получить структурированный verdict для оператора или системы.</p>
+              <ul>
+                <li>проверяет банковские PDF-чеки;</li>
+                <li>определяет статус: original / fake / unknown;</li>
+                <li>находит фейковые и изменённые чеки;</li>
+                <li>снижает ручную нагрузку на саппорт и операторов;</li>
+                <li>ускоряет проверку спорных платежей;</li>
+                <li>подключается через API или тестового бота.</li>
+              </ul>
             </div></div>
           </div>
 
@@ -850,22 +914,43 @@ ul{ margin:0; padding:0; list-style:none; }
     nodeSize: 6, nodes: [[0, 6], [8, 6], [4, 7]]
   });
 
-  /* Направления: открыт всегда один столбик, текст разворачивается под сеткой */
+  /* Направления: каждая карточка разворачивается независимо. Открытие/закрытие
+     меняет только текст под самой карточкой и не трогает соседние — поэтому клик
+     никогда не сдвигает кликнутую карточку и не «уводит» фокус (ни вверх, ни вниз). */
   document.querySelectorAll('.dcard__btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var card = btn.closest('.dcard');
       var body = document.getElementById(btn.getAttribute('aria-controls'));
-      var wasOpen = card.getAttribute('data-open') === '1';
-      document.querySelectorAll('.dcard').forEach(function (c) {
-        c.setAttribute('data-open', '0');
-        c.querySelector('.dcard__btn').setAttribute('aria-expanded', 'false');
-      });
-      document.querySelectorAll('.dbody').forEach(function (b) { b.setAttribute('data-open', '0'); });
-      if (!wasOpen) {
-        card.setAttribute('data-open', '1');
-        btn.setAttribute('aria-expanded', 'true');
-        body.setAttribute('data-open', '1');
+      var open = card.getAttribute('data-open') === '1';
+      card.setAttribute('data-open', open ? '0' : '1');
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      body.setAttribute('data-open', open ? '0' : '1');
+
+      /* Anchor the toggled card to its on-screen position while the grid
+         reflows, so it never jumps (e.g. collapsing a card whose body sits
+         above the viewport). Yield immediately if the user scrolls. */
+      var anchorTop = card.getBoundingClientRect().top;
+      var cancelled = false;
+      var yield_ = function () { cancelled = true; };
+      window.addEventListener('wheel', yield_, { passive: true });
+      window.addEventListener('touchmove', yield_, { passive: true });
+      var root = document.documentElement;
+      var prevBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      var t0 = (window.performance && performance.now) ? performance.now() : Date.now();
+      function cleanup() {
+        root.style.scrollBehavior = prevBehavior;
+        window.removeEventListener('wheel', yield_);
+        window.removeEventListener('touchmove', yield_);
       }
+      (function pin() {
+        if (cancelled) { cleanup(); return; }
+        var delta = card.getBoundingClientRect().top - anchorTop;
+        if (delta) window.scrollBy(0, delta);
+        var now = (window.performance && performance.now) ? performance.now() : Date.now();
+        if (now - t0 < 520) requestAnimationFrame(pin);
+        else cleanup();
+      })();
     });
   });
 
